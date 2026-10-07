@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taeha Portal | مطور بوتات محترف</title>
+    
+    <!-- Tailwind CSS & FontAwesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #050505;
+            color: #ffffff;
+        }
+
+        /* خلفية متحركة ديناميكية بتأثير Taeha */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.85)),
+                        url('https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            animation: pulseBg 8s infinite alternate ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes pulseBg {
+            0% { transform: scale(1); filter: hue-rotate(0deg) brightness(0.9); }
+            100% { transform: scale(1.08); filter: hue-rotate(20deg) brightness(1.1); }
+        }
+
+        /* نيون زر الواتساب */
+        .whatsapp-glow {
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.6);
+            transition: all 0.3s ease;
+        }
+        .whatsapp-glow:hover {
+            box-shadow: 0 0 40px rgba(37, 211, 102, 0.9);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        /* توهج النص في الأسفل */
+        .text-glow {
+            text-shadow: 0 0 12px rgba(59, 130, 246, 0.8), 0 0 20px rgba(147, 51, 234, 0.6);
+        }
+    </style>
+</head>
+<body class="flex flex-col justify-between items-center relative select-none">
+
+    <!-- Background Layer -->
+    <div class="animated-bg"></div>
+
+    <!-- Audio Player (Zombie Song) -->
+    <audio id="zombieAudio" loop preload="auto">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Top Music Control Header -->
+    <header class="z-10 w-full max-w-md p-4 flex justify-between items-center bg-black/40 backdrop-blur-md rounded-b-2xl border-b border-white/10">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-red-500 animate-ping"></span>
+            <span class="text-xs font-bold text-gray-300">Taeha World • Zombie Theme</span>
+        </div>
+        <button onclick="toggleAudio()" class="bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded-xl text-xs font-bold border border-white/20 transition flex items-center gap-2">
+            <i id="musicIcon" class="fa-solid fa-compact-disc animate-spin text-amber-400"></i>
+            <span id="musicStatus">تشغيل الصوت</span>
+        </button>
+    </header>
+
+    <!-- Main Card View -->
+    <main class="z-10 w-full max-w-sm px-4 text-center my-auto flex flex-col items-center">
+        
+        <!-- Taeha Character Avatar -->
+        <div class="relative mb-6">
+            <div class="w-28 h-28 rounded-full border-2 border-emerald-400 p-1 bg-black/50 shadow-2xl overflow-hidden mx-auto">
+                <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=300&auto=format&fit=crop" alt="Taeha Character" class="w-full h-full object-cover rounded-full">
+            </div>
+            <span class="absolute bottom-0 right-2 bg-emerald-500 text-black text-[10px] font-black px-2 py-0.5 rounded-full uppercase border border-black">
+                ONLINE
+            </span>
+        </div>
+
+        <!-- Main WhatsApp Contact Button -->
+        <a href="https://wa.me/201028316330" target="_blank" onclick="playMusicOnInteraction()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-black py-4 px-6 rounded-2xl text-base flex items-center justify-center gap-3 whatsapp-glow transition duration-300">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+            <span>تواصل عبر الواتساب</span>
+        </a>
+
+    </main>
+
+    <!-- Footer Description -->
+    <footer class="z-10 pb-8 text-center">
+        <p class="text-lg md:text-xl font-black text-white tracking-wide text-glow">
+            مطور بوتات محترف
+        </p>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        const audio = document.getElementById('zombieAudio');
+        const musicStatus = document.getElementById('musicStatus');
+        const musicIcon = document.getElementById('musicIcon');
+        let isPlaying = false;
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                musicStatus.innerText = "تشغيل الصوت";
+                musicIcon.classList.remove('animate-spin');
+                isPlaying = false;
+            } else {
+                audio.play().then(() => {
+                    musicStatus.innerText = "إيقاف الصوت";
+                    musicIcon.classList.add('animate-spin');
+                    isPlaying = true;
+                }).catch(() => {
+                    alert('إتاحة تشغيل الصوت تتطلب الضغط على الشاشة أولاً!');
+                });
+            }
+        }
+
+        function playMusicOnInteraction() {
+            if (!isPlaying) {
+                audio.play();
+            }
+        }
+
+        // تشغيل تلقائي بمجرد الضغط في أي مكان بالصفحة
+        document.body.addEventListener('click', function() {
+            if (!isPlaying) {
+                audio.play().then(() => {
+                    musicStatus.innerText = "إيقاف الصوت";
+                    musicIcon.classList.add('animate-spin');
+                    isPlaying = true;
+                }).catch(() => {});
+            }
+        }, { once: true });
+    </script>
+</body>
+  </html>
+  
