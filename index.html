@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taeha | مطور بوتات محترف</title>
+    <title>Taeha Portal | مطور بوتات محترف</title>
     
     <!-- Tailwind CSS & FontAwesome -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -21,7 +21,7 @@
             color: #ffffff;
         }
 
-        /* خلفية Taeha المضيئة والمتحركة */
+        /* خلفية Taeha المتحركة */
         .animated-bg {
             position: absolute;
             top: 0;
@@ -51,7 +51,7 @@
             transform: translateY(-3px) scale(1.03);
         }
 
-        /* توهج النص السفلي */
+        /* توهج النص في الأسفل */
         .neon-text {
             text-shadow: 0 0 15px rgba(59, 130, 246, 0.9), 0 0 30px rgba(147, 51, 234, 0.8);
         }
@@ -62,17 +62,16 @@
     <!-- Background Layer -->
     <div class="animated-bg"></div>
 
-    <!-- Audio Player (Zombie Song) -->
+    <!-- Audio Player (Your Custom Track) -->
     <audio id="zombieSong" loop preload="auto">
-        <source src="https://files.catbox.moe/93i1vx.mp3" type="audio/mpeg">
-        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+        <source src="https://files.catbox.moe/dglmga.mp4" type="audio/mp4">
     </audio>
 
     <!-- Top Music Control -->
     <header class="z-10 w-full max-w-md p-4 flex justify-between items-center bg-black/50 backdrop-blur-md rounded-b-2xl border-b border-white/10">
         <div class="flex items-center gap-2">
             <span class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
-            <span class="text-xs font-bold text-gray-200">Taeha • Zombie Remix</span>
+            <span class="text-xs font-bold text-gray-200">Taeha • Zombie Sound</span>
         </div>
         <button onclick="toggleAudio()" class="bg-white/10 hover:bg-white/20 text-white px-3.5 py-1.5 rounded-xl text-xs font-bold border border-white/20 transition flex items-center gap-2">
             <i id="musicIcon" class="fa-solid fa-compact-disc text-amber-400"></i>
@@ -80,7 +79,7 @@
         </button>
     </header>
 
-    <!-- Main Card -->
+    <!-- Main Section -->
     <main class="z-10 w-full max-w-sm px-4 text-center my-auto flex flex-col items-center">
         
         <!-- Taeha Avatar -->
@@ -93,7 +92,7 @@
             </span>
         </div>
 
-        <!-- WhatsApp Button -->
+        <!-- WhatsApp Direct Button -->
         <a href="https://wa.me/201028316330" target="_blank" onclick="startSong()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-black py-4 px-6 rounded-2xl text-base flex items-center justify-center gap-3 whatsapp-glow transition duration-300">
             <i class="fa-brands fa-whatsapp text-2xl"></i>
             <span>تواصل عبر الواتساب</span>
@@ -101,14 +100,14 @@
 
     </main>
 
-    <!-- Footer Description -->
+    <!-- Footer Text -->
     <footer class="z-10 pb-8 text-center">
         <p class="text-xl font-black text-white tracking-wider neon-text">
             مطور بوتات محترف
         </p>
     </footer>
 
-    <!-- Script Control -->
+    <!-- Script -->
     <script>
         const audio = document.getElementById('zombieSong');
         const musicStatus = document.getElementById('musicStatus');
@@ -138,7 +137,7 @@
             }
         }
 
-        // تشغيل الأغنية فوراً عند أول ضغطة على الصفحة
+        // تشغيل الصوت تلقائياً عند أول لمسة على الشاشة
         document.body.addEventListener('click', function() {
             if (!isPlaying) {
                 audio.play().then(() => {
